@@ -17,7 +17,6 @@ func main() {
 	initDatabase()
 
 	redisClient := redis.NewClient(&redis.Options{
-	redisClient := redis.NewClient(&redis.Options{
 		Addr:     os.Getenv("REDIS_ADDR"),
 		Password: os.Getenv("REDIS_PASSWORD"),
 		DB:       0,
