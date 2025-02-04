@@ -9,7 +9,10 @@ func SetupRoutes(s *URLShortener) *gin.Engine {
 	router := gin.Default()
 
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:9000"}
+	config.AllowOrigins = []string{
+		"http://localhost:9000",
+		"https://short-url-frontend.vercel.app",
+	}
 	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"}
 	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type"}
 	config.AllowCredentials = true
