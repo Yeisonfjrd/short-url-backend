@@ -4,5 +4,5 @@ dockerfilePath = "Dockerfile"
 
 [deploy]
 startCommand = "./main"
-healthcheckPath = "/"
+healthcheckPath = "/health"
 restartPolicyType = "on_failure" 

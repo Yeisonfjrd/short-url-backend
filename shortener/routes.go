@@ -17,22 +17,11 @@ func SetupRoutes(s *URLShortener) *gin.Engine {
 	router.Use(cors.New(config))
 
 	router.GET("/health", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"status": "ok",
-		})
+		c.JSON(200, gin.H{"status": "ok"})
 	})
-
-	router.Static("/static", "./static")
-	router.StaticFile("/", "./static/index.html")
-	router.StaticFile("/app.js", "./static/app.js")
 
 	api := router.Group("/api")
 	{
-		api.GET("/health", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"status": "ok",
-			})
-		})
 		api.POST("/shorten", s.CreateShortURL)
 		api.GET("/stats/:shortCode", s.GetStats)
 	}
