@@ -14,8 +14,8 @@ func SetupRoutes(s *URLShortener) *gin.Engine {
 		"https://short-url-frontend-msfsxvk6v-yeisonfjrds-projects.vercel.app",
 	}
 	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"}
-	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type"}
-	config.AllowCredentials = true
+	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Accept"}
+	config.AllowCredentials = false
 
 	router.Use(cors.New(config))
 
