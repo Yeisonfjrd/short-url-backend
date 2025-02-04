@@ -12,6 +12,9 @@ func SetupRoutes(s *URLShortener) *gin.Engine {
 	config.AllowOrigins = []string{
 		"http://localhost:9000",
 		"https://url-shortener-frontend-nine.vercel.app",
+		"https://url-shortener-frontend-nine.vercel.app",
+		"https://url-shortener-git-main-yeisonfjrd.vercel.app",
+		"https://url-shortener.vercel.app",
 	}
 	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"}
 	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type"}
