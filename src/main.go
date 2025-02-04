@@ -4,8 +4,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/go-redis/redis/v8"
 	"github.com/joho/godotenv"
+
+	"url-shortener/database"
+	"url-shortener/shortener"
 )
 
 func main() {
@@ -14,17 +16,10 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	initDatabase()
+	database.InitDatabase()
 
-	redisClient := redis.NewClient(&redis.Options{
-		Addr:     os.Getenv("REDIS_ADDR"),
-		Password: os.Getenv("REDIS_PASSWORD"),
-		DB:       0,
-	})
-
-	shortener := NewURLShortener(redisClient)
-
-	router := setupRoutes(shortener)
+	urlShortener := shortener.NewURLShortener()
+	router := shortener.SetupRoutes(urlShortener)
 
 	port := os.Getenv("PORT")
 	if port == "" {
