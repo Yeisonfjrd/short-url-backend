@@ -11,7 +11,7 @@ func SetupRoutes(s *URLShortener) *gin.Engine {
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{
 		"http://localhost:9000",
-		"https://short-url-frontend-msfsxvk6v-yeisonfjrds-projects.vercel.app",
+		"https://short-url-frontend-lbwn15yf6-yeisonfjrds-projects.vercel.app",
 		"https://short-url-frontend-msfsxvk6v-yeisonfjrds-projects.vercel.app:3000",
 		"https://short-url-frontend-git-main-yeisonfjrds-projects.vercel.app",
 		"https://short-url-frontend.vercel.app",
