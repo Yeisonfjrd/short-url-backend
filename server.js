@@ -17,12 +17,10 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL 
 });
 
-// Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-// Create short URL
 app.post('/api/shorten', async (req, res) => {
   try {
     const { url } = req.body;
@@ -30,10 +28,8 @@ app.post('/api/shorten', async (req, res) => {
       return res.status(400).json({ error: 'URL is required' });
     }
 
-    // Generate short code
     const hash = crypto.createHash('sha256').update(url).digest('base64').slice(0, 8);
 
-    // Check if URL exists
     const existingUrl = await pool.query(
       'SELECT * FROM urls WHERE original_url = $1',
       [url]
@@ -44,7 +40,6 @@ app.post('/api/shorten', async (req, res) => {
       return res.json({ short_url: shortUrl });
     }
 
-    // Store new URL
     const result = await pool.query(
       'INSERT INTO urls (original_url, short_code) VALUES ($1, $2) RETURNING *',
       [url, hash]
@@ -58,7 +53,6 @@ app.post('/api/shorten', async (req, res) => {
   }
 });
 
-// Redirect to original URL
 app.get('/:shortCode', async (req, res) => {
   try {
     const { shortCode } = req.params;
@@ -78,7 +72,6 @@ app.get('/:shortCode', async (req, res) => {
   }
 });
 
-// Get URL stats
 app.get('/api/stats/:shortCode', async (req, res) => {
   try {
     const { shortCode } = req.params;
